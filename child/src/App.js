@@ -31,6 +31,6 @@ const App = () => {
       <div id="child-message">Child Message:</div>
     </div>
   );
-}
+};
 
 export default App;

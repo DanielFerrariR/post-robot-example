@@ -27,7 +27,7 @@ const App = () => {
       const el = document.getElementById("parent-message");
       el.innerHTML += "\n" + event.data.message;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
