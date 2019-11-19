@@ -3,20 +3,29 @@ import postRobot from "post-robot";
 
 const App = () => {
   useEffect(() => {
-    postRobot.on("bar", event => {
-      var el = document.getElementById("parent-message");
-      el.innerHTML += "\n" + event.data.message;
-      return {
-        message: event.data.message
-      };
-    });
+    postRobot.on(
+      "bar",
+      { window: window.opener, domain: "http://localhost:5000" },
+      event => {
+        var el = document.getElementById("parent-message");
+        el.innerHTML += "\n" + event.data.message;
+        return {
+          message: event.data.message
+        };
+      }
+    );
   }, []);
 
   const sendMessage = async () => {
     try {
-      const event = await postRobot.send(window.opener, "foo", {
-        message: Math.random().toString()
-      });
+      const event = await postRobot.send(
+        window.opener,
+        "foo",
+        {
+          message: Math.random().toString()
+        },
+        { domain: "http://localhost:5000" }
+      );
       const el = document.getElementById("child-message");
       el.innerHTML += "\n" + event.data.message;
     } catch (error) {
