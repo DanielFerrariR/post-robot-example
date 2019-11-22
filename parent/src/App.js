@@ -11,8 +11,9 @@ const App = () => {
       "foo",
       { window: newWindow, domain: "http://localhost:3000" },
       event => {
+        console.log("Recebeu do filho: ", event.data.message);
         var el = document.getElementById("child-message");
-        el.innerHTML += "\n" + event.data.message;
+        el.innerHTML += "\n" + event.data.message.name;
         return {
           message: event.data.message
         };
@@ -23,17 +24,19 @@ const App = () => {
   };
 
   const sendMessage = async () => {
+    const user = { id: 1, name: "daniel", age: 26 };
     try {
       const event = await postRobot.send(
         childWindow,
         "bar",
         {
-          message: Math.random().toString()
+          message: user
         },
         { domain: "http://localhost:3000" }
       );
+      console.log("Retorno do envio:", event.data.message);
       const el = document.getElementById("parent-message");
-      el.innerHTML += "\n" + event.data.message;
+      el.innerHTML += "\n" + event.data.message.name;
     } catch (error) {
       console.log(error);
     }
