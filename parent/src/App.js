@@ -11,7 +11,7 @@ const App = () => {
       "foo",
       { window: newWindow, domain: "http://localhost:3000" },
       event => {
-        console.log("Recebeu do filho: ", event.data.message);
+        console.log("Received from child: ", event.data.message);
         var el = document.getElementById("child-message");
         el.innerHTML += "\n" + event.data.message.name;
         return {
@@ -34,7 +34,7 @@ const App = () => {
         },
         { domain: "http://localhost:3000" }
       );
-      console.log("Retorno do envio:", event.data.message);
+      console.log("Returned from the parent:", event.data.message);
       const el = document.getElementById("parent-message");
       el.innerHTML += "\n" + event.data.message.name;
     } catch (error) {

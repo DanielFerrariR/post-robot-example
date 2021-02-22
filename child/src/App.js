@@ -7,7 +7,7 @@ const App = () => {
       "bar",
       { window: window.opener, domain: "http://localhost:5000" },
       event => {
-        console.log("Recebeu do pai", event.data.message);
+        console.log("Received from the parent", event.data.message);
         var el = document.getElementById("parent-message");
         el.innerHTML += "\n" + event.data.message.name;
         return {
@@ -28,7 +28,7 @@ const App = () => {
         },
         { domain: "http://localhost:5000" }
       );
-      console.log("Retorno do envio", event.data.message);
+      console.log("Returned from the child", event.data.message);
       const el = document.getElementById("child-message");
       el.innerHTML += "\n" + event.data.message.name;
     } catch (error) {
