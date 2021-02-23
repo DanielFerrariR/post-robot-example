@@ -28,7 +28,7 @@ const App = () => {
         },
         { domain: "http://localhost:5000" }
       );
-      console.log("Returned from the child", event.data.message);
+      console.log("Returned from the parent", event.data.message);
       const el = document.getElementById("child-message");
       el.innerHTML += "\n" + event.data.message.name;
     } catch (error) {
